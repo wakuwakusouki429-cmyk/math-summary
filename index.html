@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中学数学まとめ</title>
+<style>
+:root{--navy:#17324d;--blue:#3168d5;--pale:#eef4ff;--ink:#202938;--muted:#65738a;--line:#dce3ed;--bg:#f6f8fc}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7}
+header{background:linear-gradient(135deg,#17324d,#285b8f);color:white;padding:36px 18px 28px}header .wrap,main{max-width:980px;margin:auto}header h1{margin:0;font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.25}header p{margin:10px 0 0;color:#dce9fa}
+main{padding:22px 16px 56px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 22px}.tab{border:1px solid var(--line);border-radius:14px;background:white;padding:14px 8px;font-size:1rem;font-weight:700;color:var(--navy);cursor:pointer}.tab span{display:block;font-size:.76rem;color:var(--muted);font-weight:500}.tab.active{background:var(--blue);color:white;border-color:var(--blue)}.tab.active span{color:#eaf0ff}
+.intro{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}.intro h2{margin:0 0 5px;font-size:1.45rem}.intro p{margin:0;color:var(--muted)}.unit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.unit{background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}.unit summary{cursor:pointer;list-style:none;padding:16px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:10px}.unit summary::-webkit-details-marker{display:none}.unit summary:after{content:'＋';color:var(--blue);font-size:1.15rem}.unit[open] summary:after{content:'−'}.unit .content{padding:0 16px 16px;border-top:1px solid #edf0f5}.content h4{margin:13px 0 4px;color:var(--blue)}.formula{background:var(--pale);border-radius:8px;padding:9px 11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}.content p{margin:7px 0}.note{font-size:.9rem;color:var(--muted)}.footer{margin-top:24px;color:var(--muted);font-size:.86rem;text-align:center}
+@media(max-width:650px){.unit-grid{grid-template-columns:1fr}.tab{padding:12px 4px}.intro{padding:16px}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>中学数学まとめ</h1><p>公式・考え方・例題を、学年ごとに整理した学習サイト</p></div></header>
+<main>
+<nav class="tabs" aria-label="学年選択"><button class="tab active" data-grade="1">中学1年<span>計算・基礎</span></button><button class="tab" data-grade="2">中学2年<span>関数・証明</span></button><button class="tab" data-grade="3">中学3年<span>応用・入試</span></button></nav>
+<section id="grade-content" aria-live="polite"></section>
+<p class="footer">学習用のまとめです。学校の教科書や授業の進度に合わせて確認しよう。</p>
+</main>
+<script>
+const grades={
+1:{title:'中学1年生のまとめ',desc:'数学の土台になる計算・方程式・図形を整理しよう。',units:[
+['正負の数','符号のルール','同じ符号の積・商は正、異なる符号は負。','(-3)×(-4)=12','引き算は「反対の数を足す」に直す。'],
+['文字式','文字式の表し方','3×a=3a、a×a=a²、a÷b=a/b（b≠0）。','3x+2x=5x','文字の部分が同じ項（同類項）だけをまとめる。'],
+['一次方程式','等式の性質','両辺に同じ数を足す・引く・掛ける・0でない数で割る。','3x+5=17 → 3x=12 → x=4','移項したときは符号が変わると考える。'],
+['比例・反比例','比例 y=ax／反比例 y=a/x','比例は原点を通る直線。反比例は曲線。','比例でx=2,y=6ならa=3、y=3x。','反比例ではx=0を代入できない。'],
+['平面図形','角度・作図','三角形の内角の和は180°。直線の角は180°。','三角形で2角が50°と60°なら残りは70°。','図が見た目でそう見えるだけでは根拠にならない。'],
+['空間図形','柱体・錐体・球','柱体の体積=底面積×高さ。錐体の体積=底面積×高さ÷3。','半径r、高さhの円柱：V=πr²h','表面積と体積を混同しない。'],
+['データの活用','平均値・中央値・最頻値','平均=合計÷個数。範囲=最大値−最小値。','2, 3, 3, 8 の中央値は (3+3)÷2=3','中央値はデータを小さい順に並べて求める。'] ]},
+2:{title:'中学2年生のまとめ',desc:'式の計算、連立方程式、一次関数、証明を身につけよう。',units:[
+['式の計算','単項式・多項式','同類項をまとめ、分配法則でかっこを外す。','3(x−2)+2x=5x−6','マイナスを含むかっこの外し忘れに注意。'],
+['連立方程式','加減法・代入法','2つの式を同時に満たすx,yを求める。','x+y=7、x−y=1 → 2x=8 → x=4,y=3','求めた値を元の2つの式に代入して確認する。'],
+['一次関数','y=ax+b','aは傾き、bは切片。傾き=(yの増加量)/(xの増加量)。','(1,3),(3,7)を通る傾きは(7−3)/(3−1)=2','xの増加量とyの増加量の順序をそろえる。'],
+['平行線と角','同位角・錯角','平行線では同位角・錯角が等しい。三角形の外角は離れた2内角の和。','離れた内角が40°と65°なら外角は105°','どの角の性質を使ったか根拠を書く。'],
+['三角形・四角形の証明','合同条件','合同条件：3組の辺、2組の辺とその間の角、1組の辺とその両端の角がそれぞれ等しい。','仮定→等しい辺・角→合同条件→結論','図だけを根拠にせず、仮定や既知の性質を使う。'],
+['確率','場合の数','確率=起こる場合の数÷すべての場合の数（同様に確からしいとき）。','サイコロで偶数：3/6=1/2','すべての結果が同じ確からしさか確認する。'],
+['データの比較','四分位範囲・箱ひげ図','四分位範囲=第3四分位数−第1四分位数。','IQR=Q3−Q1','箱ひげ図では中央値とデータの散らばりを見比べる。'] ]},
+3:{title:'中学3年生のまとめ',desc:'平方根・二次方程式・二次関数・相似など、入試につながる内容を整理しよう。',units:[
+['展開・因数分解','公式を使い分ける','(a+b)²=a²+2ab+b²、(a−b)²=a²−2ab+b²、(a+b)(a−b)=a²−b²。','x²+5x+6=(x+2)(x+3)','真ん中の項の符号と係数を確認する。'],
+['平方根','√の計算','√(ab)=√a√b（a,b≥0）。√(a²)=|a|。','√12=√(4×3)=2√3','√(a+b)を√a+√bに分けることはできない。'],
+['二次方程式','因数分解・解の公式','ax²+bx+c=0 の解は x=(-b±√(b²−4ac))/(2a)。','x²−5x+6=0 → (x−2)(x−3)=0 → x=2,3','最後に元の式に代入して確かめる。'],
+['二次関数','y=ax²','xがpからqに変化するとき、変化の割合=a(p+q)。','y=2x²でxが1から3：2(1+3)=8','一次関数と違い、変化の割合は一定ではない。'],
+['相似','辺・面積・体積の比','相似比がm:nなら面積比はm²:n²、体積比はm³:n³。','相似比2:3なら面積比4:9','対応する頂点・辺を正しく対応させる。'],
+['円の性質','円周角','同じ弧に対する円周角は等しい。円周角は同じ弧の中心角の半分。','中心角が100°なら同じ弧の円周角は50°','どの弧に対する角かを確認する。'],
+['三平方の定理','直角三角形','直角をはさむ2辺をa,b、斜辺をcとするとa²+b²=c²。','a=3,b=4ならc=√(9+16)=5','斜辺は直角の向かい側にある最も長い辺。'],
+['標本調査','母集団・標本','一部の標本を調べ、母集団全体の傾向を推測する。','無作為に選んだ生徒の回答から学校全体を推測する。','標本の選び方に偏りがあると推測も偏りやすい。'] ]}
+};
+function render(g){const d=grades[g];document.getElementById('grade-content').innerHTML=`<div class="intro"><h2>${d.title}</h2><p>${d.desc}</p></div><div class="unit-grid">${d.units.map((u,i)=>`<details class="unit"><summary>${i+1}. ${u[0]}</summary><div class="content"><h4>${u[1]}</h4><p>${u[2]}</p><h4>例</h4><div class="formula">${u[3]}</div><h4>間違えやすいポイント</h4><p>${u[4]}</p></div></details>`).join('')}</div>`;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.grade===g));}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>render(b.dataset.grade)));render('1');
+</script></body></html>
